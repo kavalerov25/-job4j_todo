@@ -21,7 +21,7 @@ public class Task {
     private String name;
     private String description;
 
-    private Timestamp created = Timestamp.valueOf(LocalDateTime.now());
+    private LocalDateTime created = LocalDateTime.now();
 
     private boolean done;
 
@@ -35,7 +35,7 @@ public class Task {
     }
 
 
-    public Task(String name, String description, Timestamp created, boolean done) {
+    public Task(String name, String description, LocalDateTime created, boolean done) {
         this.name = name;
         this.description = description;
         this.created = created;

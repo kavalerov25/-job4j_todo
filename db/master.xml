@@ -8,4 +8,3 @@
 
     <include file="scripts/001_ddl_init_schema.sql" relativeToChangelogFile="true"/>
 </databaseChangeLog>
-
