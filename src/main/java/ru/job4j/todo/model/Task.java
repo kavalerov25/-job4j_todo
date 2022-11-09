@@ -17,28 +17,8 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     private String name;
     private String description;
-
     private LocalDateTime created = LocalDateTime.now();
-
     private boolean done;
-
-    public Task(int id, String description) {
-        this.id = id;
-        this.description = description;
-    }
-
-    public Task(String description) {
-        this.description = description;
-    }
-
-
-    public Task(String name, String description, LocalDateTime created, boolean done) {
-        this.name = name;
-        this.description = description;
-        this.created = created;
-        this.done = done;
-    }
 }

@@ -5,7 +5,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.job4j.todo.model.Task;
 import ru.job4j.todo.service.TaskService;
-
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -19,10 +18,16 @@ public class TaskController {
         this.taskService = taskService;
     }
 
-    @GetMapping("/tasks")
+
+    @GetMapping("/new")
+    public String add(Model model) {
+        return "new";
+    }
+
+    @GetMapping("")
     public String tasks(Model model) {
         model.addAttribute("tasks", taskService.findAll());
-        return "allTasks";
+        return "tasks";
     }
 
     @GetMapping("/undone")
@@ -40,7 +45,7 @@ public class TaskController {
     @PostMapping("/create")
     public String create(@ModelAttribute Task task) {
         task.setCreated(LocalDateTime.now());
-        taskService.create(task);
+        taskService.add(task);
         return "redirect:/tasks";
     }
 
@@ -56,25 +61,22 @@ public class TaskController {
 
     @GetMapping("/setDone/{id}")
     public String setDone(@PathVariable("id") int id) {
-        taskService.setTaskIsDone(id);
+        taskService.setDone(id);
         return "redirect:/tasks";
     }
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id") int id) {
-        taskService.delete(id);
-        return "redirect:/tasks";
+        if (!taskService.delete(id)) {
+            return "404";
+        } else {
+            return "redirect:/tasks";
+        }
     }
 
     @PostMapping("/update")
     public String update(@ModelAttribute Task task) {
-        taskService.update(task.getId(), task);
+        taskService.replace(task.getId(), task);
         return "redirect:/tasks";
-    }
-
-    @GetMapping("/formUpdateTask/{id}")
-    public String formUpdateTask(Model model, @PathVariable("id") int id) {
-        model.addAttribute("task", taskService.findById(id));
-        return "updateTask";
     }
 }

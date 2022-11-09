@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 import ru.job4j.todo.model.Task;
 import ru.job4j.todo.store.TaskStore;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,28 +11,11 @@ import java.util.Optional;
 public class TaskService {
 
     private final TaskStore store;
-
     public TaskService(TaskStore store) {
         this.store = store;
     }
 
-    public Task create(Task task) {
-        return store.create(task);
-    }
-
-    public void update(int  id, Task task) {
-        store.update(id, task);
-    }
-
-    public boolean delete(int id) {
-        return store.delete(id);
-    }
-
-    public void setTaskIsDone(int id) {
-        store.setTaskIsDone(id);
-    }
-
-    public Collection<Task> findAll() {
+    public List<Task> findAll() {
         return store.findAll();
     }
 
@@ -45,4 +27,19 @@ public class TaskService {
         return store.findById(id);
     }
 
+    public Task add(Task task) {
+        return store.add(task);
+    }
+
+    public boolean delete(int id) {
+        return store.delete(id);
+    }
+
+    public boolean replace(int id, Task task) {
+        return store.replace(id, task);
+    }
+
+    public void setDone(int id) {
+        store.setDone(id);
+    }
 }

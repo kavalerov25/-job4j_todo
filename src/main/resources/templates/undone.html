@@ -14,17 +14,17 @@
             integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <title>ToDo List</title>
+    <title>TODO list</title>
 </head>
 <body>
 <div class="container">
-    <div class="links">
-        <a th:href="@{/tasks}" class="link">All</a>
-        <a href="#" class="link">Undone</a>
-        <a th:href="@{/tasks/done}" class="link">Done</a>
-    </div>
+	<div class="links">
+        <a th:href="@{/tasks}" class="link-secondary">Все задания</a>
+        <a th:href="@{/tasks/undone}" class="link-danger">Невыполненные</a>
+        <a th:href="@{/tasks/done}" class="link-success">Сделанные</a>
+	</div>
     <div class="row">
         <table class="table">
             <thead>
@@ -32,28 +32,28 @@
                 <th scope="col">#</th>
                 <th scope="col">Описание задачи</th>
                 <th scope="col">Дата создания</th>
-                <th scope="col">Статус</th>
+                <th scope="col">Статсус</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="task: ${undone}" >
                 <td th:text="${task.id}" />
-                <td>
-                    <a th:text="${task.description}" th:href="@{|/tasks/info/${task.id}|}"/>
-                </td>
-                <td th:text="${#temporals.format(task.created, 'dd-MM-yyyy')}" />
-                <td>
-                    <a>
-                        <span th:if="${task.done}">Done</span>
-                        <span th:if="${!task.done}">Undone</span>
-                    </a>
-                </td>
+				<td>
+					<a th:text="${task.description}" th:href="@{|/tasks/info/${task.id}|}"/>
+				</td>
+			    <td th:text="${#temporals.format(task.created, 'dd-MM-yyyy')}" />
+				<td>
+					<a>
+					<span th:if="${task.done}">Done</span>
+					<span th:if="${!task.done}">Undone</span>
+					</a>
+				</td>
             </tr>
             </tbody>
         </table>
     </div>
-    <div class="button">
-        <a class="btn btn-primary" th:href="@{/tasks/new}" role="button">New task</a>
+	<div class="button">
+		<a class="btn btn-primary" th:href="@{/tasks/new}" role="button">New task</a>
     </div>
 </div>
 </body>
