@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -14,7 +14,6 @@
             integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <title>TODO list</title>
 </head>
@@ -28,53 +27,34 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-item nav-link" th:href="@{/tasks}">Main</a>
-                <a class="nav-item nav-link active" th:href="@{/formAddUser}">Registration</a>
-                <a class="nav-item nav-link" th:if="${user.name == 'Guest'}" th:href="@{/loginPage}">
-                    <span th:text="${user.name}"></span>
-                    <span> | Login</span>
-                </a>
-                <a class="nav-item nav-link" th:if="${user.name != 'Guest'}" th:href="@{/logout}">
-                    <span th:text="${user.name}"></span>
-                    <span> | Logout</span>
-                </a>
+                <a class="nav-item nav-link" th:href="@{/formAddUser}">Registration</a>
             </div>
         </div>
     </nav>
-    <div>
-	<div class="links">
-        <a th:href="@{/tasks}" class="link-secondary">Все задания</a>
-        <a th:href="@{/tasks/undone}" class="link-danger">Невыполненные</a>
-        <a th:href="@{/tasks/done}" class="link-success">Сделанные</a>
-	</div>
     <div class="row">
-        <table class="table">
-            <thead>
-            <tr>
-			    <th scope="col">#</th>
-			    <th scope="col">Task description</th>
-				<th scope="col">Date of creation</th>
-			    <th scope="col">Status</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="task: ${done}" >
-                <td th:text="${task.id}" />
-				<td>
-					<a th:text="${task.description}" th:href="@{|/tasks/info/${task.id}|}"/>
-				</td>
-			    <td th:text="${#temporals.format(task.created, 'dd-MM-yyyy')}" />
-				<td>
-					<a>
-					<span th:if="${task.done}">Done</span>
-					<span th:if="${!task.done}">Undone</span>
-					</a>
-				</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-	<div class="button">
-		<a class="btn btn-primary" th:href="@{/tasks/new}" role="button">New task</a>
+        <div class="card" style="width: 100%">
+            <div class="card-header">
+                Autorization
+            </div>
+            <div class="card-body">
+                <div th:if="${fail}" class="alert alert-danger" role="alert">
+                    Login or password is not correct!
+                </div>
+                <form th:action="@{/login}" method="POST">
+                    <input type="hidden" name="id" value="0"/>
+                    <input type="hidden" name="name" value="name"/>
+                    <div class="form-group">
+                        <label for="login">Login</label>
+                        <input type="text" class="form-control" name="login"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="text" class="form-control" name="password"/>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 </body>

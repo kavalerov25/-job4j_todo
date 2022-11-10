@@ -1,11 +1,8 @@
 package ru.job4j.todo.model;
 
 import lombok.*;
-
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name = "tasks")

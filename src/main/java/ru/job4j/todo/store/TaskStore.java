@@ -1,7 +1,6 @@
 package ru.job4j.todo.store;
 
 import lombok.AllArgsConstructor;
-import lombok.AllArgsConstructor;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
