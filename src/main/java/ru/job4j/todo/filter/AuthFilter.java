@@ -8,19 +8,19 @@ import java.util.Set;
 
 public class AuthFilter implements Filter {
 
-    private final Set<String> uriSet = Set.of("/loginPage", "/login", "/formAddUser",
-            "/registration", "/fail", "/success");
-
-    private boolean checkUri(String uri) {
-        return uriSet.contains(uri);
-    }
+    private static final Set<String> PAGES = Set.of(
+            "loginPage",
+            "login",
+            "logout",
+            "formAddUser"
+    );
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpServletResponse res = (HttpServletResponse) servletResponse;
         String uri = req.getRequestURI();
-        if (checkUri(uri)) {
+        if (checkUriEnd(uri, PAGES)) {
             filterChain.doFilter(req, res);
             return;
         }
@@ -29,5 +29,10 @@ public class AuthFilter implements Filter {
             return;
         }
         filterChain.doFilter(req, res);
+    }
+
+    private boolean checkUriEnd(String uri, Set<String> set) {
+        return set.stream()
+                .anyMatch(uri::endsWith);
     }
 }
