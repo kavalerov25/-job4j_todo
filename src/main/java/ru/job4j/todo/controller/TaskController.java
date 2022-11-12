@@ -15,6 +15,8 @@ import java.util.Optional;
 @RequestMapping("/tasks")
 public class TaskController {
 
+    private final static String MESSAGE = "Приложение \"TODO список\". Примененный стек технологий: "
+                                          + "Spring boot, Thymeleaf, Bootstrap, Hibernate, PostgreSql.";
     private final TaskService taskService;
 
     public TaskController(TaskService taskService) {
@@ -30,6 +32,7 @@ public class TaskController {
 
     @GetMapping("")
     public String tasks(Model model, HttpSession session) {
+        model.addAttribute("message", MESSAGE);
         model.addAttribute("tasks", taskService.findAll());
         model.addAttribute("user", Utility.check(session));
         return "tasks";
@@ -70,15 +73,16 @@ public class TaskController {
 
 
     @GetMapping("/edit/{id}")
-        public String edit(Model model, @PathVariable("id") int id, HttpSession session) {
-            Optional<Task> optTask = taskService.findById(id);
-            if (optTask.isEmpty()) {
-                return "404";
-            }
-            model.addAttribute("task", optTask.get());
-            model.addAttribute("user", Utility.check(session));
-            return "formUpdate";
+    public String edit(Model model, @PathVariable("id") int id, HttpSession session) {
+        Optional<Task> optTask = taskService.findById(id);
+        if (optTask.isEmpty()) {
+            return "404";
         }
+        model.addAttribute("task", optTask.get());
+
+        model.addAttribute("user", Utility.check(session));
+        return "formUpdate";
+    }
 
     @GetMapping("/setDone/{id}")
     public String setDone(@PathVariable("id") int id) {
@@ -90,9 +94,8 @@ public class TaskController {
     public String delete(@PathVariable("id") int id) {
         if (!taskService.delete(id)) {
             return "404";
-        } else {
-            return "redirect:/tasks";
         }
+        return "redirect:/tasks";
     }
 
     @PostMapping("/update")
@@ -100,4 +103,11 @@ public class TaskController {
         taskService.replace(task.getId(), task);
         return "redirect:/tasks";
     }
+
+    @GetMapping("/formUpdateTask/{id}")
+    public String formUpdateTask(Model model, @PathVariable("id") int id) {
+        model.addAttribute("task", taskService.findById(id));
+        return "updateTask";
+    }
+
 }
