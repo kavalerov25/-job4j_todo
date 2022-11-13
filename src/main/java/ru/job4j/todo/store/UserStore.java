@@ -29,4 +29,9 @@ public class UserStore {
                 Map.of("uLgn", login, "uPwd", password)
         );
     }
+
+    public Optional<User> findById(int id) {
+        return crudRepository.optional("from User where id = :uId", User.class,
+                Map.of("uId", id));
+    }
 }

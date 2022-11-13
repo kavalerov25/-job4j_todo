@@ -14,6 +14,7 @@ import java.util.Optional;
 
 @Repository
 @AllArgsConstructor
+
 public class TaskStore {
     private final CrudRepository crudRepository;
 
@@ -42,8 +43,10 @@ public class TaskStore {
     }
 
     public void replace(int id, Task task) {
-        crudRepository.run("update Task set description = :tDesc, created = :tCrt, done = false where id = :tId",
-                Map.of("tId", id, "tDesc", task.getDescription(), "tCrt", LocalDateTime.now()));
+        crudRepository.run("update Task set description = :tDesc, created = :tCrt, done = false,"
+                           + " user_id = :tUser where id = :tId",
+                Map.of("tId", id, "tDesc", task.getDescription(), "tCrt", LocalDateTime.now(),
+                        "tUser", task.getUser().getId()));
     }
 
     public void setDone(int id) {

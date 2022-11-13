@@ -58,6 +58,7 @@
                 <th scope="col">Описание задачи</th>
                 <th scope="col">Дата создания</th>
                 <th scope="col">Статус</th>
+                <th scope="col">Пользователь</th>
             </tr>
             </thead>
             <tbody>
@@ -66,13 +67,14 @@
                 <td>
                     <a th:text="${task.description}" th:href="@{|/tasks/info/${task.id}|}"/>
                 </td>
-                <td th:text="${#temporals.format(task.created, 'dd-MM-yyyy')}"/>
+                <td th:text="${#temporals.format(task.created, 'dd-MM-yyyy')}"></td>
                 <td>
                     <a>
                         <span th:if="${task.done}">Done</span>
                         <span th:if="${!task.done}">Undone</span>
                     </a>
                 </td>
+                <td th:text="${task.user}"></td>
             </tr>
             </tbody>
         </table>

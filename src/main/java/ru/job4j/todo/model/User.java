@@ -2,7 +2,6 @@ package ru.job4j.todo.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -11,7 +10,6 @@ import javax.persistence.*;
 @Table(name = "users")
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(exclude = {"login", "password"})
 @Data
 public class User {
     @Id
@@ -21,8 +19,4 @@ public class User {
     private String login;
     private String password;
 
-    public User(int id, String login) {
-        this.id = id;
-        this.login = login;
-    }
 }

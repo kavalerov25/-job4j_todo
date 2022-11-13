@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 @Table(name = "tasks")
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(exclude = {"created", "description"})
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Data
 public class Task {
     @Id
@@ -18,4 +18,7 @@ public class Task {
     private String description;
     private LocalDateTime created = LocalDateTime.now();
     private boolean done;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }
