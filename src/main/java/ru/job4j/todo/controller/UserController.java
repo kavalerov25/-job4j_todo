@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ru.job4j.todo.model.User;
 import ru.job4j.todo.service.UserService;
 import ru.job4j.todo.util.Utility;
-
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Optional;
