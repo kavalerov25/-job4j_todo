@@ -5,37 +5,60 @@
 Это веб-приложение TODO List. Есть список заданий.
 
 Приложение позволяет:
+
 - добавлять задачи в список
-- удалять задачи 
+- удалять задачи
 - помечать задачи как выполненные
 - редактировать задачи -отображать
 - завершенные/незавершенные задачи отдельными списками
 
 ## Использованные технологии
 
+![java](https://img.shields.io/badge/Java-17-red)
+![Spring Boot](https://img.shields.io/badge/Spring-Boot-2.7.3-green)
+![PostgresSQL](https://img.shields.io/badge/PostgresSQL-42.3.6-brightgreen)
+![Liquibase](https://img.shields.io/badge/Liquibase-core-4.15.0-red)
+![Hibernate](https://img.shields.io/badge/Hibernate-5.6.11.Final-red)
+![Lombok](https://img.shields.io/badge/Lombok-1.18.22-lightgrey)
+![Thymeleaf](https://img.shields.io/badge/Thymeleaf-3.0.15-blue)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-style-blue)
+
+Перед запуском установите:
+
 - Java 17
-- Maven 3.1.2
-- Spring boot 2.7.3
-- PostgreSQL 42.3.6
-- Liquibase 4.15.0
-- Hibernate 5.6.11.Final
-- Lombok 1.18.22
-- Thymeleaf
-- Bootstrap
+- Apache Maven 3.x
+- PostgreSQL 14
 
-## Перед запуском проекта:
+## Запуск приложения
 
-- создать базу данных с именем todo
-- поменять login/password в файлах src/main/resources/db.properties и src/main/resources/hibernate.cfg.xml на требуемый
-  ![](images/step1.png)
-  ![](images/step2.png)
+1. Создать бд:
 
-## Запуск приложения:
+```sql
+    create database todo;
+```
 
-- запустить метод main в классе src/main/java/ru/job4j/todo/Main.java
-- после запуска сервера перейти на адрес: http://localhost:8080/tasks
+2. Запуск приложения с maven. Перейдите в корень проекта через командную строку и выполните команды:
 
-##Examples
-![](images/ex1.png)
-![](images/ex2.png)
-![](images/ex3.png)
+```
+    mvn clean install
+    mvn spring-boot:run
+```
+
+3.поменять login/password в файлах src/main/resources/db.properties и src/main/resources/hibernate.cfg.xml на требуемый
+![](images/step1.png)
+![](images/step2.png)
+
+## Examples
+
+Список всех задач (завершенных/незавершенных)
+![index page](images/Tasks.png)
+Список завершенных задач
+![index page](images/CompletedTasks.png)
+Список новых задач
+![index page](images/NewTasks.png)
+**При нажатии на кнопку "Изменить задачу" происходит переход в меню редактирования задачи
+![index page](images/7.EditTask.png)**
+
+### Контакты:
+
+email: kavalerov24@gmail.ru

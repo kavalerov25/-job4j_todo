@@ -1,9 +1,6 @@
 package ru.job4j.todo.store;
 
 import lombok.AllArgsConstructor;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 import ru.job4j.todo.model.Task;
 
@@ -37,13 +34,14 @@ public class TaskStore {
         return task;
     }
 
-    public void delete(int id) {
-        crudRepository.run("delete from Task where id = :tId",
+    public boolean delete(int id) {
+         crudRepository.run("delete from Task where id = :tId",
                 Map.of("tId", id));
+        return false;
     }
 
     public void replace(int id, Task task) {
-        crudRepository.run("update Task set description = :tDesc, created = :tCrt, done = false,"
+         crudRepository.run("update Task set description = :tDesc, created = :tCrt, done = false,"
                            + " user_id = :tUser where id = :tId",
                 Map.of("tId", id, "tDesc", task.getDescription(), "tCrt", LocalDateTime.now(),
                         "tUser", task.getUser().getId()));
