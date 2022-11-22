@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -69,7 +69,7 @@
                         <span th:if="${!task.done}">Undone</span>
                     </a>
                 </td>
-                <td th:text="${task.user}"></td>
+                <td th:text="${task.user.name}"></td>
             </tr>
             </tbody>
         </table>

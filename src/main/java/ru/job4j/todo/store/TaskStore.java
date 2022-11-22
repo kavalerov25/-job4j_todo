@@ -34,10 +34,9 @@ public class TaskStore {
         return task;
     }
 
-    public boolean delete(int id) {
+    public void delete(int id) {
          crudRepository.run("delete from Task where id = :tId",
                 Map.of("tId", id));
-        return false;
     }
 
     public void replace(int id, Task task) {

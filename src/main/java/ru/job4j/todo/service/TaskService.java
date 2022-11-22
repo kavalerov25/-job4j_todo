@@ -32,8 +32,8 @@ public class TaskService {
         return store.add(task);
     }
 
-    public boolean delete(int id) {
-        return store.delete(id);
+    public void delete(int id) {
+        store.delete(id);
 
     }
 

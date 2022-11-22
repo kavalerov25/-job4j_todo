@@ -1,6 +1,5 @@
 package ru.job4j.todo.util;
 
-import org.springframework.ui.Model;
 import ru.job4j.todo.model.User;
 import javax.servlet.http.HttpSession;
 

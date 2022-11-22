@@ -15,9 +15,9 @@
 ## Использованные технологии
 
 ![java](https://img.shields.io/badge/Java-17-red)
-![Spring Boot](https://img.shields.io/badge/Spring-Boot-2.7.3-green)
+![Spring Boot](https://img.shields.io/badge/Spring-Boot-green)
 ![PostgresSQL](https://img.shields.io/badge/PostgresSQL-42.3.6-brightgreen)
-![Liquibase](https://img.shields.io/badge/Liquibase-core-4.15.0-red)
+![Liquibase](https://img.shields.io/badge/Liquibase-core-red)
 ![Hibernate](https://img.shields.io/badge/Hibernate-5.6.11.Final-red)
 ![Lombok](https://img.shields.io/badge/Lombok-1.18.22-lightgrey)
 ![Thymeleaf](https://img.shields.io/badge/Thymeleaf-3.0.15-blue)
@@ -56,8 +56,8 @@
 ![index page](images/CompletedTasks.png)
 Список новых задач
 ![index page](images/NewTasks.png)
-**При нажатии на кнопку "Изменить задачу" происходит переход в меню редактирования задачи
-![index page](images/7.EditTask.png)**
+При нажатии на кнопку "Изменить задачу" происходит переход в меню редактирования задачи
+![index page](images/EditTask.png)
 
 ### Контакты:
 
