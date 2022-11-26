@@ -10,5 +10,5 @@
     <include file="scripts/002_ddl_user_schema.sql" relativeToChangelogFile="true"/>
     <include file="scripts/003_ddl_alter_table_task_add_column_userId.sql" relativeToChangelogFile="true"/>
     <include file="scripts/004_dml_insert_users_and_tasks.sql" relativeToChangelogFile="true"/>
-
+    <include file="scripts/005_ddl_priority_schema.sql" relativeToChangelogFile="true"/>
 </databaseChangeLog>

@@ -55,6 +55,7 @@
                     <th scope="col">Date of creation</th>
                     <th scope="col">Status</th>
                     <th scope="col">Пользователь</th>
+                    <th scope="col">Priority</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -70,7 +71,8 @@
                             <span th:if="${!task.done}">Undone</span>
                         </a>
                     </td>
-                    <td th:text="${task.user}"></td>
+                    <td th:text="${task.user.name}"></td>
+                    <td th:text="${task.priority.name}" />
                 </tr>
                 </tbody>
             </table>

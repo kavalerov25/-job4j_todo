@@ -1,10 +1,12 @@
 package ru.job4j.todo.controller;
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.job4j.todo.model.Task;
 import ru.job4j.todo.model.User;
+import ru.job4j.todo.service.PriorityService;
 import ru.job4j.todo.service.TaskService;
 import ru.job4j.todo.util.Utility;
 
@@ -13,21 +15,19 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Controller
+@AllArgsConstructor
 @RequestMapping("/tasks")
 public class TaskController {
 
     private final static String MESSAGE = "Приложение \"TODO список\". Примененный стек технологий: "
                                           + "Spring boot, Thymeleaf, Bootstrap, Hibernate, PostgreSql.";
     private final TaskService taskService;
-
-    public TaskController(TaskService taskService) {
-        this.taskService = taskService;
-    }
-
+    private final PriorityService priorityService;
 
     @GetMapping("/new")
     public String add(Model model, HttpSession session) {
         model.addAttribute("user", Utility.check(session));
+        model.addAttribute("priorities", priorityService.findAll());
         return "new";
     }
 
