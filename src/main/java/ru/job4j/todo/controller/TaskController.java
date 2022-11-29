@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.job4j.todo.model.Task;
 import ru.job4j.todo.model.User;
+import ru.job4j.todo.service.CategoryService;
 import ru.job4j.todo.service.PriorityService;
 import ru.job4j.todo.service.TaskService;
 import ru.job4j.todo.util.Utility;
@@ -23,11 +24,13 @@ public class TaskController {
                                           + "Spring boot, Thymeleaf, Bootstrap, Hibernate, PostgreSql.";
     private final TaskService taskService;
     private final PriorityService priorityService;
+    private final CategoryService categoryService;
 
     @GetMapping("/new")
     public String add(Model model, HttpSession session) {
         model.addAttribute("user", Utility.check(session));
         model.addAttribute("priorities", priorityService.findAll());
+        model.addAttribute("categories", categoryService.findAll());
         return "new";
     }
 

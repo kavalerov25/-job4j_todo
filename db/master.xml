@@ -3,12 +3,19 @@
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
-    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+		http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+		http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
 
     <include file="scripts/001_ddl_init_schema.sql" relativeToChangelogFile="true"/>
     <include file="scripts/002_ddl_user_schema.sql" relativeToChangelogFile="true"/>
     <include file="scripts/003_ddl_alter_table_task_add_column_userId.sql" relativeToChangelogFile="true"/>
     <include file="scripts/004_dml_insert_users_and_tasks.sql" relativeToChangelogFile="true"/>
     <include file="scripts/005_ddl_priority_schema.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/006_ddl_alter_table_categories.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/007_dml_insert_categories.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/008_ddl_alter_table_task_category.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/009_dml_insert_task_category.sql" relativeToChangelogFile="true"/>
 </databaseChangeLog>
