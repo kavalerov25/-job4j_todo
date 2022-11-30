@@ -2,10 +2,13 @@ package ru.job4j.todo.service;
 
 import org.springframework.stereotype.Service;
 import ru.job4j.todo.model.Task;
+import ru.job4j.todo.model.User;
 import ru.job4j.todo.store.TaskStore;
 
+import java.time.ZoneId;
 import java.util.List;
 import java.util.Optional;
+import java.util.TimeZone;
 
 @Service
 public class TaskService {
@@ -16,8 +19,16 @@ public class TaskService {
         this.store = store;
     }
 
-    public List<Task> findAll() {
-        return store.findAll();
+    public List<Task> findAll(User user) {
+        var stored = store.findAll();
+        var tz = user.getTimezone() != null ? user.getTimezone() : TimeZone.getDefault();
+        for (Task task : stored) {
+            var time = task.getCreated().atZone(
+                    ZoneId.of(tz.getID())
+            ).toLocalDateTime();
+            task.setCreated(time);
+        }
+        return stored;
     }
 
     public List<Task> findByDone(boolean isDone) {

@@ -2,7 +2,7 @@ create table if not exists tasks (
     id          serial primary key,
     name        text,
     description text,
-    created     timestamp,
+    created     TIMESTAMP WITHOUT TIME ZONE DEFAULT now(),
     done        boolean
 );
 

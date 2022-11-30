@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.TimeZone;
 
 @Entity
 @Table(name = "users")
@@ -18,5 +19,6 @@ public class User {
     private String name;
     private String login;
     private String password;
-
+    @Column(name = "user_zone")
+    private TimeZone timezone;
 }
