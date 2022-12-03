@@ -6,26 +6,26 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import ru.job4j.todo.model.Task;
-import ru.job4j.todo.model.User;
-
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.TimeZone;
 
 public class ToDoRun {
     public static void main(String[] args) {
+        var tz = TimeZone.getTimeZone("America/Los_Angeles").getID();
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure().build();
         try {
             SessionFactory sf = new MetadataSources(registry).buildMetadata().buildSessionFactory();
-            var stored = listOf("from User where id = 1", User.class, sf);
-            for (User user : stored) {
-                System.out.println(user.getTimezone().getDisplayName());
-                System.out.println(LocalDateTime.now() + " : "
-                                   + LocalDateTime.now().atZone(ZoneId.of("UTC+8")));
+            var stored = listOf("from Task", Task.class, sf);
+            for (Task task : stored) {
+                var time = task.getCreated().atZone(ZoneId.of(tz));
+                task.setCreated(time.toLocalDateTime());
+                System.out.println("LocalDateTime: " + task.getCreated() + " - ZonedDateTime: " + time);
             }
-        }  catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             StandardServiceRegistryBuilder.destroy(registry);

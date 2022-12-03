@@ -64,11 +64,11 @@
             </thead>
             <tbody>
             <tr th:each="task: ${tasks}">
-                <td th:text="${task.id}"/>
+                <td th:text="${task.id}"></td>
                 <td>
-                    <a th:text="${task.description}" th:href="@{|/tasks/info/${task.id}|}"/>
+                    <a th:text="${task.description}" th:href="@{|/tasks/info/${task.id}|}"></a>
                 </td>
-                <td th:text="${#temporals.format(task.created, 'dd-MM-yyyy HH:mm')}" />
+                <td th:text="${#temporals.format(task.created, 'dd-MM-yyyy HH:mm')}"></td>
                 <td>
                     <a>
                         <span th:if="${task.done}">Done</span>

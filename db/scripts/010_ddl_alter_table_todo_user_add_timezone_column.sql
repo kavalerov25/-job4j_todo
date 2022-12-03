@@ -1,1 +1,1 @@
-ALTER TABLE todo_user ADD COLUMN user_zone VARCHAR;
+ALTER TABLE users ADD COLUMN user_zone VARCHAR;
