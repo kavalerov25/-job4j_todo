@@ -20,13 +20,12 @@ public class TaskService {
     }
 
     public List<Task> findAll(User user) {
+        var tzId = user.getTimezone().getID();
         var stored = store.findAll();
-        var tz = user.getTimezone() != null ? user.getTimezone() : TimeZone.getDefault();
         for (Task task : stored) {
-            var time = task.getCreated().atZone(
-                    ZoneId.of(tz.getID())
-            ).toLocalDateTime();
-            task.setCreated(time);
+            var time = task.getCreated().atZone(ZoneId.of("UTC"));
+            var zonedDateTime = time.withZoneSameInstant(ZoneId.of(tzId));
+            task.setCreated(zonedDateTime.toLocalDateTime());
         }
         return stored;
     }

@@ -14,9 +14,6 @@ public class UserService {
     private final UserStore store;
 
     public Optional<User> add(User user) {
-        if (user.getTimezone() == null) {
-            user.setTimezone(TimeZone.getDefault());
-        }
         return store.add(user);
     }
 
